@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Poppins', sans-serif;
+            scroll-snap-type: y mandatory;
+            overflow-y: scroll;
+            background: radial-gradient(circle at 50% 50%, #1b1f2f, #000);
+            color: #fff;
+
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .card {
+            scroll-snap-align: start;
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            width: 85%;
+            max-width: 350px;
+            height: 70vh;
+            margin: 15vh auto;
+            box-shadow: 0 8px 32px rgba(255, 255, 255, 0.5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            animation: pulse 1s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+            }
+
+            100% {
+                box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+            }
+        }
+
+        .card img {
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: transform 0.4s ease;
+        }
+
+        .card:hover img {
+            transform: rotate(2deg) scale(1.02);
+        }
+
+        .card h2 {
+            margin: 15px 0 10px;
+            font-size: 1.8em;
+            background: linear-gradient(45deg, #00d4ff, #ff00e5);
+            -webkit-background-clip: text;
+            color: transparent;
+            animation: glow 2s infinite alternate;
+        }
+
+        @keyframes glow {
+            0% {
+                text-shadow: 0 0 10px #00d4ff, 0 0 20px #00d4ff, 0 0 30px #ff00e5, 0 0 40px #ff00e5;
+
+            }
+
+            100% {
+                text-shadow: 0 0 20px #ff00e5, 0 0 30px #ff00e5, 0 0 40px #00d4ff, 0 0 50px #00d4ff;
+            }
+        }
+
+        .card p {
+            margin: 0;
+            font-size: 1em;
+            color: rgba(255, 255, 255, 0.7);
+            animation: fadeIn 1.5s ease-in-out both;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="card">
+            <a href="/index.html"
+                style="display: block; text-align: center; margin: 20px auto; color: #00d4ff; text-decoration: none;">Accueil</a>
+
+            <img src="/istockphoto-182100239-612x612.jpg" alt="Profile 1">
+            <h2> Emily , 22 ans</h2>
+            <p> vendeuse</p>
+        </div>
+        <div class="card">
+            <img src="/istockphoto-1369510216-612x612.jpg" alt="Profile 1">
+            <h2> Maéva 19 ans</h2>
+            <p> BTS</p>
+        </div>
+        <div class="card">
+            <img src="/istockphoto-2148119544-612x612.jpg" alt="Profile 1">
+            <h2> Léa, 29 ans</h2>
+            <p> étudiante</p>
+        </div>
+
+    </div>
+</body>
+
+</html>

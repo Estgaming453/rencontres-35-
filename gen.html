@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/futur.css">
+    <script src="/script.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            margin: 0;
+            height: 100vh;
+        }
+
+        .sidebar {
+            width: 20%;
+            background-color: #2c3e50;
+            padding: 20px;
+            color: white;
+        }
+
+        .sidebar a {
+            color: #ecf0f1;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .server-name{
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+
+        }
+
+
+        .channel-list{
+            list-style: none;
+            padding: 0;
+        }
+
+        .channel-list li {
+            margin-bottom: 10px;
+            cursor: pointer;
+
+        }
+        .chat-container{
+            width: 80%;
+            display: flex;
+            flex-direction: column;
+
+        }
+
+        .chat-header{
+            background-color: #34495e;
+            color: white;
+            padding: 15px;
+            font-size: 18px;
+        }
+
+        .chat-messages{
+            flex-grow: 1;
+            padding: 15px;
+            background-color: #1c2122;
+            overflow-y: auto;
+        }
+
+        .chat-messages .message{
+            margin-bottom: 10px;
+
+        }
+        .message .username{
+            font-weight: bold;
+
+        }
+        .chat-input{
+            display: flex;
+            padding: 10px;
+            background-color: #404548;
+
+        }
+
+        .chat-input input {
+            flex-grow: 1;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        .chat-input button {
+            padding: 10px;
+            background-color: #2ecc71;
+            border: none;
+            color:  white;
+            cursor: pointer;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div class="sidebar">
+        <a href="/index.html">accueil</a>
+        <div class="server-name">Messagerie</div>
+        <ul class="channel-list">
+            <li># général</li>
+            <li># annonces</li>
+            <li># messages</li>
+        </ul>
+    </div>
+
+    <div class="chat-container">
+        <div class="chat-header">#annonce</div>
+        <div class="chat-messages">
+            <div class="message">
+                <span class="username">Utilisateur1:</span>
+                <span class="message-content"></span>
+            </div>
+        </div>
+        <div class="chat-input">
+            <input type="text" id="messageInput" placeholder="Envoyer un message...">
+            <button id="sendButton">Envoyer</button>
+        </div>
+    </div>
+    
+    <script>
+        const sendButton = document.getElementById('sendButton');
+        const messageInput = document.getElementById('messageInput')
+        const chatMessages = document.querySelector('.chat-messages')
+
+
+        sendButton.addEventListener('click', function () {
+
+            const messageText = messageInput.value;
+
+            const newMessage = document.createElement('div');
+            newMessage.classList.add('message');
+            newMessage.innerHTML = `<span class="username">Vous:</span>
+        <span class="message-content">${messageText}</span> 
+        `;
+            chatMessages.appendChild(newMessage);
+            messageInput.value = '';
+        })
+
+        function saveMessage(content, type) {
+            const messages = JSON.parse(localStorage.getItem('messages')) || [];
+            messages.push({ content, type });
+            localStorage.setItem('messages', JSON.stringify(messages));
+        }
+
+        window.addEventListener('load', () => {
+            loadMessages();
+        });
+
+
+        document.getElementById('send-button').addEventListener('click', () => {
+            const messageInput = document.getElementById('message-input');
+            const messageElement = document.createElement('div')
+            messageElement.classList.add('self')
+            messageElement.textContent = message;
+            chatMessages.appendChild(messageElement)
+
+            saveMessage(message, 'self')
+
+            messageInput.value = '';
+        });
+
+        const contacts = document.querySelectorAll('.contact')
+        contacts.forEach(contact => {
+            contact.addEventListener('click', () => {
+                document.querySelector('.chat-header h1').textContent`discussion avc ${contact.textContent}`
+                document.getElementById('chat-messages').innerHTML = '';
+
+
+                loadMessages();
+            })
+        })
+    </script>
+</body>
+
+</html>

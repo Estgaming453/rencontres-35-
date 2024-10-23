@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/styles.css">
+
+</head>
+
+<body>
+
+
+
+    <header>
+        <h1> Ondes du Coeur</h1>
+        <div class="auth-buttons">
+            </select>
+        </div>
+
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#">Accueil</a></li>
+            <li> <a href="/l.html">Messages</a></li>
+            <li><a href="#">Mon compte</a>
+                <ul>
+
+                    <li><a href="/parametre.html">Paramètres</a></li>
+                    <li><a href="/logout.php">Déconnexion</a></li>
+                </ul>
+
+            </li>
+            <li><a href="/profil.html">Profils</a></li>
+            <li><a href="/abonnement.html">Abonnement</a></li>
+            <li><a href="/mail.html">Mail</a></li>
+            <li><a href=""> Neuro-atypique</a>
+
+                <ul>
+                    <li><a href="/TSA.html">TSA </a></li>
+                    <li><a href="/tdah.html">TDAH</a></li>
+                </ul>
+            </li>
+
+    </nav>
+
+
+    <script>
+
+        document.querySelector('.like-btn').forEach(button => {
+            button.addEventListener('click', function () {
+                const profileId = this.getAttribute('data-id');
+                const likeCountElement = document.getElementById('like-count-' + profileId);
+                let currentLikes = parseInt(likeCountElement.textContent);
+                currentLikes += 1;
+                likeCountElement.textContent = currentLikes;
+            })
+        })
+        document.addEventListener("DOMContentLoaded", function () {
+    const cards = document.querySelectorAll('.card')
+    let currentCardIndex = 0;
+
+
+    function initSwipe(card) {
+        const hammer = new Hammer(card)
+
+        hammer.on('swipeleft', () => {
+            swipeCard(card, 'left')
+        })
+        hammer.on('swiperight', () => {
+            swipeCard(card, 'right')
+        })
+    }
+
+    function swipeCard(card, direction) {
+        if (direction === 'left') {
+            card.classList.add('swipe-left')
+        } else if (direction === 'right') {
+            card.classList.add('swipe-right')
+        }
+
+        setTimeout(() => {
+            card.style.display = 'none';
+            currentCardIndex++;
+            if (currentCardIndex < cards.length) {
+                cards[currentCardIndex].style.display = 'block';
+                initSwipe(cards[currentCardIndex])
+
+            } else {
+                alert('Plus de profils à afficher !')
+            }
+        }, 300)
+    }
+    if (cards.length > 0) {
+        initSwipe(cards[0])
+    }
+})
+
+
+function swipeCard(card, direction) {
+    const profileId = card.getAttribute('data-id')
+
+    fetch('/swipe.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            profileId: profileId,
+            action: direction === 'left' ? 'dislike' : 'like'
+
+        }),
+    });
+
+    if (direction === 'left') {
+        card.classList.add('swipe-left')
+    } else if (direction === 'right') {
+        card.classList.add('swipe-right')
+    }
+
+    setTimeout(() => {
+        card.style.display = 'none'
+        currentCardIndex++;
+        if (currentCardIndex < cards.length) {
+            cards[currentCardIndex].style.display = 'block'
+        } else {
+            alert('Plus de profils à  afficher !')
+        }
+
+    }, 300);
+
+}
+
+document.getElementById('swipe-left').addEventListener('click', () => {
+    if (currentCardIndex < cards.length) {
+        swipeCard(cards[currentCardIndex], 'left')
+    }
+})
+document.getElementById('swipe-right').addEventListener('click', () => {
+    if (currentCardIndex < cards.length) {
+        swipeCard(cards[currentCardIndex], 'right')
+    }
+})
+
+document.addEventListener('keydown', function (event) {
+    if (event.key === 'ArrowLeft') {
+        if (currentCardIndex < cards.length) {
+            swipeCard(cards[currentCardIndex], 'left')
+        }
+    } else if (event.key === 'ArrowRight') {
+        if (currentCardIndex < cards.length) {
+            swipeCard(cards[currentCardIndex], 'right')
+        }
+    }
+})
+
+    </script>
+    <div id="login" class="auth-form">
+        <h2>se connecter</h2>
+        <form action="/connexion.php" method="post">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+            <label for="password">Mot de passe</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit">Se connecter</button>
+
+        </form>
+    </div>
+
+    <div id="signup" class="auth-form">
+        <h2> S'inscrire</h2>
+        <form action="/inscription.php" method="post">
+            <label for="new-email">Email</label>
+            <input type="email" id="new-email" name="new-email" required>
+            <label for="new-password">Mot de passe</label>
+            <input type="password" id="new-password" name="new-password" required>
+            <label for="confirm-password">Confirmer le mot de passe</label>
+            <input type="password" id="confirm-password" name="confirm-password">
+            <button type="submit">S'inscrire</button>
+
+        </form>
+    </div>
+
+</body>
+
+</html>

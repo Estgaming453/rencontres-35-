@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/mess.css">
+    <script type="module" src="/script.js"></script>
+
+</head>
+
+<div class="main-container">
+
+    <div class="sidebar">
+
+        <h2>Contacts</h2>
+        <ul id="contact-list">
+            <li class="contact">Ami 1</li>
+            <li class="contact">Ami 2</li>
+            <li class="contact">Ami 3</li>
+        </ul>
+    </div>
+
+    <div class="chat-list">
+        <h2>Contacts</h2>
+        <ul id="conversation-list">
+            <li class="conversation">Conversation 1</li>
+            <li class="conversation">Conversation 2</li>
+            <li class="conversation">Conversation 3</li>
+        </ul>
+    </div>
+
+    <div class="chat-container">
+        <div class="chat-window">
+            <div class="chat-header">
+                <h1>Discussion active</h1>
+            </div>
+            <div class="chat-messages" id="chat-messages"></div>
+            <div class="chat-input">
+                <input type="text" id="message-input" placeholder="Écrire un message">
+                <button id="send-button">Envoyer</button>
+                <button id="call-button">📞 Appeler</button>
+                <button id="voice-button"> 🎤 Enregistrer un vocal</button>
+                <button id="media-button">📷Envoyer une photo vidéo</button>
+                <input type="file" id="media-input" accept="image/*,video/*" style="display: none;">
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('send-button').addEventListener('click', () => {
+        const messageInput = document.getElementById('message-input');
+        const message = messageInput.value;
+
+        const chatMessages = document.getElementById('chat-messages')
+        const messageElement = document.createElement('div');
+        messageElement.classList.add('self');
+        messageElement.textContent = message;
+        chatMessages.appendChild(messageElement);
+
+        messageInput.value = '';
+
+    });
+
+
+    const contacts = document.querySelectorAll('.contact');
+    contacts.forEach(contact => {
+        contact.addEventListener('click', () => {
+            document.querySelector('.chat-header h1').textContent = `Discussion avec ${contact.textContent}`;
+            document.getElementById('chat-messages').innerHTML = '';
+        });
+    });
+
+
+    function encodeBase64(str) {
+        return btoa(str);
+    }
+
+    function decodeBase64(str) {
+        return atob(str);
+    }
+    document.getElementById('send-button').addEventListener('click', () => {
+        const messageInput = document.getElementById('message-input');
+        const message = messageInput.value;
+        const encodedMessage = encodeBase64(message);
+
+
+        const chatMessages = document.getElementById('chat-messages');
+        const messageElement = document.createElement('div');
+        messageElement = `Encoded:  ${encodedMessage}`;
+        chatMessages.appendChild(messageElement);
+
+        setTimeout(() => {
+            const decodedMessage = decodeBase64(encodedMessage);
+            const decodedMessageElement = document.createElement('div');
+            decodedMessageElement.textContent = `Decoded: ${decodedMessage}`;
+            chatMessages.appendChild(decodedMessageElement);
+        }, 1000)
+
+        messageInput.value = '';
+
+    })
+
+    document.getElementById('voice-button').addEventListener('click', () => {
+        navigator.mediaDevices.getUserMedia({ audio: true })
+            .then(stream => {
+                MediaRecorder = new MediaRecorder(stream);
+                MediaRecorder.start();
+                MediaRecorder.ondataavailable = event => {
+                    audioChunks.push(event.data);
+                };
+                MediaRecorder.onstop = () => {
+                    const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+                    const audioUrl = URL.createObjectURL(audioBlob);
+                    const audio = document.createElement('audio');
+                    audio.controls = true;
+                    document.getElementById('chat-messages').appendChild(audio)
+                    audioChunks = [];
+
+                };
+                setTimeout(() => MediaRecorder.stop(), 5000);
+
+            });
+    });
+
+    document.getElementById('call-button').addEventListener('click', () => {
+        alert('Fonction d\'appel à implémenter');
+    })
+
+    document.getElementById('media-button').addEventListener('click', () => {
+        document.getElementById('media-input').click();
+    });
+
+    document.getElementById('media-input').addEventListener('change', (event) => {
+        const file = event.target.files[0];
+        const chatMessages = document.getElementById('chat-messages')
+        if (file) {
+            const fileUrl = URL.createObjectURL(file);
+            let mediaElement;
+
+            if (file.type.startsWith('image/')) {
+                mediaElement = document.createElement('img');
+                mediaElement.src = fileUrl;
+                mediaElement.style.maxWidth = '200px';
+            } else if (file.type.startsWith('video/')) {
+                mediaElement = document.createElement('video');
+                mediaElement.src = fileUrl;
+                mediaElement.controls = true;
+                mediaElement.style.maxWidth = '200px'
+            }
+
+            if (mediaElement) {
+                chatMessages.appendChild(mediaElement);
+            }
+            document.getElementById('media-input').value = '';
+
+        }
+    })
+    document.getElementById('media-input').addEventListener('change', (event) => {
+        const file = event.target.files[0];
+        const chatMessages = document.getElementById('chat-messages')
+
+        if (file) {
+            const fileUrl = URL.createObjectURL(file)
+            let mediaElement;
+
+            if (file.type.startsWith('image/')) {
+                mediaElement = document.createElement('img');
+                mediaElement.src = fileUrl;
+            } else if (file.type.startsWith('video/')) {
+                mediaElement = document.createElement('video')
+                mediaElement.src = fileUrl;
+                mediaElement = true
+            }
+            if (mediaElement) {
+                chatMessages.appendChild(mediaElement);
+
+            }
+            document.getElementById('media-input').value = '';
+        }
+    })
+
+</script>
+</body>
+
+</html>

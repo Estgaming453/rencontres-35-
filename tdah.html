@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TDAH</title>
+</head>
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    html,
+    body {
+        background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+        font-family: 'Arial', sans-serif;
+        height: 100%;
+        color: #333;
+    }
+
+    body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 20px;
+    }
+
+    header {
+        background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+        width: 100%;
+        padding: 20px;
+        text-align: center;
+        color: white;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+        margin: 0;
+        font-size: 2.5em;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .content {
+        background-color: white;
+        border-radius: 10px;
+        padding: 30px;
+        margin-top: 20px;
+        box-shadow: 0 2px 4px rgba(127, 14, 14, 0.1);
+        max-width: 800px;
+        width: 100%;
+        color: #333;
+    }
+
+    .content h2 {
+        font-size: 2em;
+        color: #ff4f60;
+        margin-bottom: 20px;
+    }
+
+    .content p {
+        font-size: 1.2em;
+        line-height: 1.6;
+        color: #666;
+        margin-bottom: 20px;
+    }
+
+    .content ul {
+        list-style-type: disc;
+        padding-left: 20px;
+        margin-bottom: 20px;
+    }
+
+    .content ul li {
+        margin-bottom: 10px;
+    }
+
+    .back-btn {
+        background-color: #ff4f60;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 1.2em;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: background-color 0.3 ease;
+        margin: top 20px;
+    }
+
+    .back-btn:hover {
+        background-color: #ff2a40;
+    }
+</style>
+</head>
+
+
+<body>
+    <header>
+        <h1>Qu'est-ce que le TDAH ?</h1>
+    </header>
+
+    <div class="content">
+        <h2> Comprendre le TDAH</h2>
+        <p>Le TDAH est un trouble marqué par des symptômes d'inattention, d'hyperactivité et d'impulsivité. Ses causes
+            ne sont pas bien isolées mais portent une part génétique à l'héritabilité marquée. Certaines hypothèses le
+            relient à un ensemble de gènes impliqués dans la régulation de la dopamine et de la noradrénaline
+            . Il est également conditionné par des facteurs environnementaux qui dans une minorité des cas
+            seraient déterminants</p>
+        <h2>Caractéristiques principales du TDAH</h2>
+        <ul>
+            <li><strong>Inattention :</strong>Les personnes ayant un TDAH peuvent avoir des difficultés à se concentrer,
+                à rester organisées et à accomplir des tâches. </li>
+            <li><strong>Hyperactivité :</strong> Ce symptôme se manifeste par un niveau élevé d'énergie et une agitation
+                physique </li>
+        </ul>
+
+        <button class="back-btn" onclick="window.location.href='index.html'">Retour à l'accueil</button>
+    </div>
+</body>
+<script>
+    
+function saveMessage(content, type) {
+    const messages = JSON.parse(localStorage.getItem('messages')) || [];
+    messages.push({ content, type });
+    localStorage.setItem('messages', JSON.stringify(messages));
+}
+
+window.addEventListener('load', () => {
+    loadMessages();
+});
+
+
+
+
+
+const contact = document.querySelectorAll('.contact')
+contacts.forEach(contact => {
+    contact.addEventListener('click', () => {
+        document.querySelector('.chat-header h1').textContent = `discussion avec ${conctact.textContent}`
+        document.getElementById('chat-messages').innerHTML = '';
+
+
+        loadMessages();
+
+
+    })
+})
+
+</script>
+</html>
+</body>
+
+</html>

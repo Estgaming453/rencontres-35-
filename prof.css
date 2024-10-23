@@ -1,0 +1,336 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+
+}
+
+.card-container {
+    position: relative;
+    width: 300px;
+    height: 400px;
+}
+
+.card {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.card img {
+    width: 100%;
+    height: 250px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.card h2 {
+    margin: 10px 0;
+}
+
+.card p {
+    padding: 0 10px;
+
+}
+
+.card:nth-child(2) {
+    transform: scale(0.9);
+}
+
+.card:nth-child(3) {
+    transform: scale(0.8);
+}
+
+.swipe-left {
+    transform: translateX(-1000px) rotate(-20deg);
+
+}
+
+.swipe-right {
+    transform: translateX(1000px) rotate(20deg);
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+button:hover{
+   background-color: #2980b9; 
+}
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    font-family: 'Arial', sans-serif;
+    height: 100%;
+    color: #333;
+}
+
+body {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header {
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5em;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+nav {
+    background: 0 0 1px linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    width: 100%;
+    padding: 10px;
+
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+
+}
+
+nav ul li {
+    position: relative;
+}
+
+nav ul li a {
+    display: block;
+    padding: 15px 20px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3;
+}
+
+nav ul li a:hover {
+    background-color: #ff2a40;
+
+}
+
+nav ul ul {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #ff4f60;
+    display: none;
+    list-style: none;
+    padding: 0;
+
+}
+
+nav ul ul li {
+    width: 180px;
+}
+
+nav ul ul li a {
+    padding: 10px;
+    color: white;
+
+}
+
+nav ul ul li a:hover {
+    background-color: #ff2a40;
+}
+
+nav ul li:hover>ul {
+    display: block;
+}
+
+nav a {
+    color: #ff4f60;
+    width: 100%;
+    padding: 15px 0;
+    text-decoration: none;
+    font-size: 1.2em;
+    font-weight: bold;
+    transition: color 0.3 ease;
+}
+
+nav a:hover {
+
+    color: #333;
+}
+
+#profiles {
+    margin-top: 30px;
+    text-align: center;
+}
+
+#profiles h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #ff4f60;
+}
+
+.profiles-card {
+    background-color: #915c5c;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 10px;
+    width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3 ease;
+    color: black;
+}
+
+.profiles-card:hover {
+    transform: scale(1.05);
+}
+
+.profiles-card h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #000000;
+}
+
+.profiles-card p {
+    color: #000000;
+    margin-bottom: 10px;
+}
+
+.like-btn {
+    background-color: #ff4f60;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3 ease;
+}
+
+.like-btn:hover {
+    background-color: #ff2a40;
+}
+
+.like-count {
+    margin-top: 10px;
+    display: inline-block;
+    font-size: 1.1em;
+    color: #000000;
+}
+
+.auth-form {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    width: 300px;
+}
+
+.auth-form h2 {
+    font: 1.8em;
+    color: #ff4f60;
+    margin-bottom: 20px;
+}
+
+.auth-form label {
+    font-size: 1em;
+    color: #333;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.auth-form input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+}
+
+.auth-form button {
+    width: 100%;
+    background-color: #ff4f60;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 20px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3 ease;
+}
+
+.auth-form button:hover {
+    background-color: #ff2a40;
+}
+
+
+
+h1 {
+    font-size: 2.5em;
+    color: #00eeda;
+    animation: glow 7s ease-in-out infinite alternate, blink 1s step-start infinite;
+    text-shadow: 0 0 10px rgba(17, 242, 5, 0.8),
+        0 0 20px rgba(2555, 255, 255, 0.6),
+        0 0 30px rgba(195, 255, 0, 0.6),
+        0 0 40px rgba(0, 150, 255, 0.5);
+}
+
+@keyframes glow {
+    0% {
+        text-shadow: 0 0 10px rgba(197, 7, 7, 0.8),
+            0 0 20px rgba(2555, 255, 255, 0.6),
+            0 0 30px rgb(0, 149, 255),
+            0 0 40px rgba(0, 150, 255, 0.5);
+    }
+
+    100% {
+        text-shadow: 0 0 20px rgb(255, 0, 0),
+            0 0 30px rgba(2555, 255, 255, 0.8),
+            0 0 40px rgba(0, 150, 255, 1),
+            0 0 50px rgba(0, 150, 255, 1);
+    }
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+#sendButton {
+    float: inline-start;
+}
+

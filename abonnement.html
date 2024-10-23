@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/abo.css">
+</head>
+
+<body>
+    <header>
+        <a href="/index.html">Accueil</a>
+        <h1>Choisissez Votre Abonnement</h1>
+    </header>
+    <section id="abonnement-options">
+        <h2>Nos offres d'abonnement</h2>
+        <div class="abonnement-card">
+            <h3>Abonnement Gratuit</h3>
+            <p>Accès de base à toute les fonctionnalités principales</p>
+            <p>Limité à 10 matchs par mois</p>
+            <button class="subscribe-btn" data-plan="gratuit">Choisir cet abonnement</button>
+        </div>
+        <h2>Nos offres d'abonnement</h2>
+        <div class="abonnement-card">
+            <h3>Abonnement Standard</h3>
+            <p>10€/mois</p>
+            <p>Accès illimité au matchs et au profils</p>
+
+            <button class="subscribe-btn" data-plan="standard">Choisir cet abonnement</button>
+        </div>
+        <h2>Nos offres d'abonnement</h2>
+        <div class="abonnement-card">
+            <h3>Abonnement Premium</h3>
+            <p> 20€/mois</p>
+            <p>tout illimité et photos</p>
+            <button class="subscribe-btn" data-plan="premium">Choisir cet abonnement</button>
+        </div>
+    </section>
+    <script>
+        document.querySelectorAll('.subscribe-btn').forEach(button => {
+            button.addEventListener('click', function () {
+                const plan = this.getAttribute('data-plan')
+                alert(`Vous avez choisi l'abonnement ${plan}`)
+            })
+        })
+    </script>
+</body>
+
+</html>
